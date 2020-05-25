@@ -11,7 +11,7 @@
 		public Movie(string title, int priceCode)
 		{
 			_title = title;
-			_priceCode = priceCode;
+			SetPriceCode(priceCode);
 		}
 
 		public int GetPriceCode()
@@ -50,6 +50,16 @@
 			}
 
 			return result;
+		}
+
+		public int GetFrequentRenterPoints(int getDaysRented)
+		{
+			var frequentRenterPoints = 0;
+			frequentRenterPoints++;
+
+			if ((GetPriceCode() == NEW_RELEASE)
+			    && getDaysRented > 1) frequentRenterPoints++;
+			return frequentRenterPoints;
 		}
 	}
 }

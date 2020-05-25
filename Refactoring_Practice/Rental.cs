@@ -3,14 +3,13 @@
 	public class Rental
 	{
 		private readonly int _daysRented;
+		private readonly Movie _movie;
 
 		public Rental(Movie movie, int daysRented)
 		{
-			Movie = movie;
+			_movie = movie;
 			_daysRented = daysRented;
 		}
-
-		public Movie Movie { get; }
 
 		public int GetDaysRented()
 		{
@@ -19,17 +18,17 @@
 
 		public Movie GetMovie()
 		{
-			return Movie;
+			return _movie;
 		}
 
-		public int GetFrequentRenterPoints()
+		public double GetCharge()
 		{
-			var frequentRenterPoints = 0;
-			frequentRenterPoints++;
+			return _movie.GetCharge(_daysRented);
+		}
 
-			if ((GetMovie().GetPriceCode() == Movie.NEW_RELEASE)
-			    && GetDaysRented() > 1) frequentRenterPoints++;
-			return frequentRenterPoints;
+		public decimal GetFrequentRenterPoints()
+		{
+			return _movie.GetFrequentRenterPoints(_daysRented);
 		}
 	}
 }

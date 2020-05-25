@@ -27,7 +27,7 @@ namespace Refactoring_Practice
 		{
 			var result = "Rental Record for " + getName() + "\n";
 
-			result = _rentals.Aggregate(result, (current, rental) => current + ("\t" + rental.GetMovie().GetTitle() + "\t" + rental.Movie.GetCharge(rental.GetDaysRented()) + "\n"));
+			result = _rentals.Aggregate(result, (current, rental) => current + ("\t" + rental.GetMovie().GetTitle() + "\t" + rental.GetMovie().GetCharge(rental.GetDaysRented()) + "\n"));
 
 			result += "Amount owed is " + GetTotalAmount() + "\n";
 
@@ -39,7 +39,7 @@ namespace Refactoring_Practice
 		{
 			var result = "<h1>Rental Record for <em>" + getName() + "</em></h1>\n";
 
-			result = _rentals.Aggregate(result, (current, rental) => current + (rental.GetMovie().GetTitle() + " : " + rental.Movie.GetCharge(rental.GetDaysRented()) + "<br/>\n"));
+			result = _rentals.Aggregate(result, (current, rental) => current + (rental.GetMovie().GetTitle() + " : " + rental.GetMovie().GetCharge(rental.GetDaysRented()) + "<br/>\n"));
 
 			result += "<p>Amount owed is <em>" + GetTotalAmount() + "</em></p>\n";
 
@@ -48,14 +48,14 @@ namespace Refactoring_Practice
 			return result;
 		}
 
-		private int GetFrequentRenterPoints()
+		private decimal GetFrequentRenterPoints()
 		{
 			return _rentals.Sum(rental => rental.GetFrequentRenterPoints());
 		}
 
 		private double GetTotalAmount()
 		{
-			return _rentals.Sum(rental => rental.Movie.GetCharge(rental.GetDaysRented()));
+			return _rentals.Sum(rental => rental.GetCharge());
 		}
 	}
 }
