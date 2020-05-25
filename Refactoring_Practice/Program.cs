@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Linq;
-using System.Runtime.ConstrainedExecution;
 
 namespace Refactoring_Practice
 {
@@ -8,7 +6,10 @@ namespace Refactoring_Practice
 	{
 		static void Main(string[] args)
 		{
-			Console.WriteLine("Hello World!");
+			var customer = new Customer("Jay");
+			customer.addRental(new Rental(new Movie("Happy Friday",Movie.CHILDRENS), 20));
+			Console.WriteLine(customer.GetStatement());
+			Console.ReadLine();
 		}
 	}
 }
