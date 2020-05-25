@@ -15,5 +15,10 @@
 
 			return result;
 		}
+
+		public int GetFrequentRenterPoints(int daysRented)
+		{
+			return 1;
+		}
 	}
 }

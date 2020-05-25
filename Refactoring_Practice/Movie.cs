@@ -49,12 +49,9 @@ namespace Refactoring_Practice
 			return _price.GetCharge(daysRented);
 		}
 
-		public int GetFrequentRenterPoints(int getDaysRented)
+		public int GetFrequentRenterPoints(int daysRented)
 		{
-			if ((GetPriceCode() == NEW_RELEASE)
-			    && getDaysRented > 1) return 2;
-
-			return 1;
+			return _price.GetFrequentRenterPoints(daysRented);
 		}
 	}
 }

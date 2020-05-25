@@ -4,5 +4,6 @@
 	{
 		int GetPriceCode();
 		double GetCharge(int daysRented);
+		int GetFrequentRenterPoints(int daysRented);
 	}
 }
