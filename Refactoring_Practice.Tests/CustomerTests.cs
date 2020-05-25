@@ -43,6 +43,52 @@ namespace Refactoring_Practice.Tests
 			Assert.AreEqual(expected, _customer.GetStatement());
 
 		}
+
+		[Test]
+		public void Statement_RentChildrenAndRegularMovie20Days()
+		{
+			
+			GivenCustomer();
+
+			RentAMovie(Movie.CHILDRENS, 20);
+
+			RentAMovie(Movie.REGULAR, 20);
+
+			var expected = "Rental Record for Jay\n\tHappy Friday\t27\n\tHappy Friday\t29\nAmount owed is 56\nYou earned 2 frequent renter points";
+
+			Assert.AreEqual(expected, _customer.GetStatement());
+
+		}
+		[Test]
+		public void Statement_RentRegularAndNewReleaseMovie20Days()
+		{
+
+			GivenCustomer();
+
+			RentAMovie(Movie.REGULAR, 20);
+
+			RentAMovie(Movie.NEW_RELEASE, 20);
+
+			var expected = "Rental Record for Jay\n\tHappy Friday\t29\n\tHappy Friday\t60\nAmount owed is 89\nYou earned 3 frequent renter points";
+
+			Assert.AreEqual(expected, _customer.GetStatement());
+
+		}
+
+		[Test]
+		public void Statement_RentAllTypeOfMovie20Days()
+		{
+			
+			GivenCustomer();
+
+			RentAMovie(Movie.CHILDRENS, 20);
+			RentAMovie(Movie.REGULAR, 20);
+			RentAMovie(Movie.NEW_RELEASE, 20);
+			var expected = "Rental Record for Jay\n\tHappy Friday\t27\n\tHappy Friday\t29\n\tHappy Friday\t60\nAmount owed is 116\nYou earned 4 frequent renter points";
+
+			Assert.AreEqual(expected, _customer.GetStatement());
+
+		}
 		private void RentAMovie(int movieTypeCode, int daysRented)
 		{
 			_customer.addRental(new Rental(new Movie("Happy Friday", movieTypeCode), daysRented));
