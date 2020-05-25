@@ -51,13 +51,10 @@ namespace Refactoring_Practice
 
 		public int GetFrequentRenterPoints(int getDaysRented)
 		{
-			var frequentRenterPoints = 0;
-			frequentRenterPoints++;
-
 			if ((GetPriceCode() == NEW_RELEASE)
-			    && getDaysRented > 1) frequentRenterPoints++;
+			    && getDaysRented > 1) return 2;
 
-			return frequentRenterPoints;
+			return 1;
 		}
 	}
 }
