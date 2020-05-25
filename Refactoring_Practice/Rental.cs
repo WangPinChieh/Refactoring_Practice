@@ -2,8 +2,8 @@
 {
 	public class Rental
 	{
-		private readonly Movie _movie;
 		private readonly int _daysRented;
+		private readonly Movie _movie;
 
 		public Rental(Movie movie, int daysRented)
 		{
@@ -11,14 +11,19 @@
 			_daysRented = daysRented;
 		}
 
-		public int getDaysRented()
+		public int GetFrequentRenterPoints()
 		{
-			return _daysRented;
+			return _movie.GetMovieFrequentRenterPoints(_daysRented);
 		}
 
-		public Movie getMovie()
+		public Movie GetMovie()
 		{
 			return _movie;
+		}
+
+		public double GetCharge()
+		{
+			return _movie.GetMovieCharge(_daysRented);
 		}
 	}
 }
