@@ -35,6 +35,18 @@ namespace Refactoring_Practice
 
 			return result;
 		}
+		public string GeHtmltStatement()
+		{
+			var result = "<h1>Rental Record for <em>" + getName() + "</em></h1>\n";
+
+			result = _rentals.Aggregate(result, (current, rental) => current + (rental.getMovie().getTitle() + " : " + rental.GetCharge() + "<br/>\n"));
+
+			result += "<p>Amount owed is <em>" + GetTotalAmount() + "</em></p>\n";
+
+			result += "You earned " + GetFrequentRenterPoints() + " frequent renter points";
+
+			return result;
+		}
 
 		private int GetFrequentRenterPoints()
 		{

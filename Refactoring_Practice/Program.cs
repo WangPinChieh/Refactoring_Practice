@@ -10,7 +10,7 @@ namespace Refactoring_Practice
 			customer.addRental(new Rental(new Movie("Happy Friday", Movie.REGULAR), 20));
 			customer.addRental(new Rental(new Movie("Happy Friday", Movie.NEW_RELEASE), 20));
 
-			Console.WriteLine(customer.GetStatement());
+			Console.WriteLine(customer.GeHtmltStatement());
 			Console.ReadLine();
 		}
 	}
