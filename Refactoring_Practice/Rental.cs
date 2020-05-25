@@ -2,46 +2,24 @@
 {
 	public class Rental
 	{
-		private readonly Movie _movie;
 		private readonly int _daysRented;
 
 		public Rental(Movie movie, int daysRented)
 		{
-			_movie = movie;
+			Movie = movie;
 			_daysRented = daysRented;
 		}
 
-		public int getDaysRented()
+		public Movie Movie { get; }
+
+		public int GetDaysRented()
 		{
 			return _daysRented;
 		}
 
-		public Movie getMovie()
+		public Movie GetMovie()
 		{
-			return _movie;
-		}
-
-		public double GetCharge()
-		{
-			double result = 0;
-			switch (getMovie().getPriceCode())
-			{
-				case Movie.REGULAR:
-					result += 2;
-					if (getDaysRented() > 2)
-						result += (getDaysRented() - 2) * 1.5;
-					break;
-				case Movie.NEW_RELEASE:
-					result += getDaysRented() * 3;
-					break;
-				case Movie.CHILDRENS:
-					result += 1.5;
-					if (getDaysRented() > 3)
-						result += (getDaysRented() - 3) * 1.5;
-					break;
-			}
-
-			return result;
+			return Movie;
 		}
 
 		public int GetFrequentRenterPoints()
@@ -49,8 +27,8 @@
 			var frequentRenterPoints = 0;
 			frequentRenterPoints++;
 
-			if ((getMovie().getPriceCode() == Movie.NEW_RELEASE)
-			    && getDaysRented() > 1) frequentRenterPoints++;
+			if ((GetMovie().GetPriceCode() == Movie.NEW_RELEASE)
+			    && GetDaysRented() > 1) frequentRenterPoints++;
 			return frequentRenterPoints;
 		}
 	}

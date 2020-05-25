@@ -14,19 +14,42 @@
 			_priceCode = priceCode;
 		}
 
-		public int getPriceCode()
+		public int GetPriceCode()
 		{
 			return _priceCode;
 		}
 
-		public void setPriceCode(int priceCode)
+		public void SetPriceCode(int priceCode)
 		{
 			_priceCode = priceCode;
 		}
 
-		public string getTitle()
+		public string GetTitle()
 		{
 			return _title;
+		}
+
+		public double GetCharge(Rental rental)
+		{
+			double result = 0;
+			switch (rental.GetMovie().GetPriceCode())
+			{
+				case REGULAR:
+					result += 2;
+					if (rental.GetDaysRented() > 2)
+						result += (rental.GetDaysRented() - 2) * 1.5;
+					break;
+				case NEW_RELEASE:
+					result += rental.GetDaysRented() * 3;
+					break;
+				case CHILDRENS:
+					result += 1.5;
+					if (rental.GetDaysRented() > 3)
+						result += (rental.GetDaysRented() - 3) * 1.5;
+					break;
+			}
+
+			return result;
 		}
 	}
 }
