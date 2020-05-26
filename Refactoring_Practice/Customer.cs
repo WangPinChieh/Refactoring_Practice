@@ -1,4 +1,6 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
+using System.Runtime.InteropServices;
 
 namespace Refactoring_Practice
 {
@@ -12,58 +14,37 @@ namespace Refactoring_Practice
 			_name = name;
 		}
 
-		public void addRental(Rental rental)
+		public void AddRental(Rental rental)
 		{
 			_rentals.Add(rental);
 		}
 
-		public string getName()
+		public string GetName()
 		{
 			return _name;
 		}
 
 		public string GetStatement()
 		{
-			double totalAmount = 0;
-			var frequentRenterPoints = 0;
-			var result = "Rental Record for " + getName() + "\n";
-			foreach (var rental in _rentals)
-			{
-				double thisAmount = 0;
-				//determine amounts for each line
-				switch (rental.getMovie().getPriceCode())
-				{
-					case Movie.REGULAR:
-						thisAmount += 2;
-						if (rental.getDaysRented() > 2)
-							thisAmount += (rental.getDaysRented() - 2) * 1.5;
-						break;
-					case Movie.NEW_RELEASE:
-						thisAmount += rental.getDaysRented() * 3;
-						break;
-					case Movie.CHILDRENS:
-						thisAmount += 1.5;
-						if (rental.getDaysRented() > 3)
-							thisAmount += (rental.getDaysRented() - 3) * 1.5;
-						break;
-				}
+			var result = "Rental Record for " + GetName() + "\n";
 
-				// add frequent renter points
-				frequentRenterPoints++;
-				// add bonus for a two day new release rental
-				if ((rental.getMovie().getPriceCode() == Movie.NEW_RELEASE)
-				    &&
-				    rental.getDaysRented() > 1) frequentRenterPoints++;
-				//show figures for this rental
-				result += "\t" + rental.getMovie().getTitle() + "\t" +
-				          thisAmount + "\n";
+			result = _rentals.Aggregate(result, (current, rental) => current + ("\t" + rental.GetMovie().GetTitle() + "\t" + rental.GetCharge() + "\n"));
 
-				totalAmount += thisAmount;
-			}
-			//add footer lines
-			result += "Amount owed is " + totalAmount + "\n";
-			result += "You earned " + frequentRenterPoints + " frequent renter points";
+			result += "Amount owed is " + GetTotalAmount() + "\n";
+
+			result += "You earned " + GetTotalFrequentRenterPoints() + " frequent renter points";
+
 			return result;
+		}
+
+		private int GetTotalFrequentRenterPoints()
+		{
+			return _rentals.Sum(rental => rental.GetFrequentRenterPoints());
+		}
+
+		private double GetTotalAmount()
+		{
+			return _rentals.Sum(rental => rental.GetCharge());
 		}
 	}
 }

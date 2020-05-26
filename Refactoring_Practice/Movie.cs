@@ -3,30 +3,46 @@
 	public class Movie
 	{
 		private readonly string _title;
-		private int _priceCode;
-		public const int REGULAR = 0;
-		public const int NEW_RELEASE = 1;
-		public const int CHILDRENS = 2;
+		private IPrice _price;
+		public const int Regular = 0;
+		public const int NewRelease = 1;
+		public const int Children = 2;
 
 		public Movie(string title, int priceCode)
 		{
 			_title = title;
-			_priceCode = priceCode;
+			SetPriceCode(priceCode);
 		}
 
-		public int getPriceCode()
+		public void SetPriceCode(int priceCode)
 		{
-			return _priceCode;
+			switch (priceCode)
+			{
+				case Regular:
+					_price = new RegularPrice();
+					break;
+				case Children:
+					_price = new ChildrenPrice();
+					break;
+				case NewRelease:
+					_price = new NewReleasePrice();
+					break;
+			}
 		}
 
-		public void setPriceCode(int priceCode)
-		{
-			_priceCode = priceCode;
-		}
-
-		public string getTitle()
+		public string GetTitle()
 		{
 			return _title;
+		}
+
+		public double GetMovieCharge(int daysRented)
+		{
+			return _price.GetCharge(daysRented);
+		}
+
+		public int GetMovieFrequentRenterPoints(int daysRented)
+		{
+			return _price.GetFrequentRenterPoints(daysRented);
 		}
 	}
 }

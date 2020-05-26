@@ -7,7 +7,7 @@ namespace Refactoring_Practice
 		static void Main(string[] args)
 		{
 			var customer = new Customer("Jay");
-			customer.addRental(new Rental(new Movie("Happy Friday",Movie.CHILDRENS), 20));
+			customer.AddRental(new Rental(new Movie("Happy Friday",Movie.Children), 20));
 			Console.WriteLine(customer.GetStatement());
 			Console.ReadLine();
 		}

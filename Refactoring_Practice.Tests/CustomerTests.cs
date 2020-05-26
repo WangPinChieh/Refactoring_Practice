@@ -12,7 +12,7 @@ namespace Refactoring_Practice.Tests
 		{
 			GivenCustomer();
 
-			RentAMovie(Movie.NEW_RELEASE, 20);
+			RentAMovie(Movie.NewRelease, 20);
 
 			var expected = "Rental Record for Jay\n\tHappy Friday\t60\nAmount owed is 60\nYou earned 2 frequent renter points";
 
@@ -24,7 +24,7 @@ namespace Refactoring_Practice.Tests
 		{
 			GivenCustomer();
 
-			RentAMovie(Movie.REGULAR, 20);
+			RentAMovie(Movie.Regular, 20);
 
 			var expected = "Rental Record for Jay\n\tHappy Friday\t29\nAmount owed is 29\nYou earned 1 frequent renter points";
 
@@ -36,7 +36,7 @@ namespace Refactoring_Practice.Tests
 		{
 			GivenCustomer();
 
-			RentAMovie(Movie.CHILDRENS, 20);
+			RentAMovie(Movie.Children, 20);
 
 			var expected = "Rental Record for Jay\n\tHappy Friday\t27\nAmount owed is 27\nYou earned 1 frequent renter points";
 
@@ -50,9 +50,9 @@ namespace Refactoring_Practice.Tests
 			
 			GivenCustomer();
 
-			RentAMovie(Movie.CHILDRENS, 20);
+			RentAMovie(Movie.Children, 20);
 
-			RentAMovie(Movie.REGULAR, 20);
+			RentAMovie(Movie.Regular, 20);
 
 			var expected = "Rental Record for Jay\n\tHappy Friday\t27\n\tHappy Friday\t29\nAmount owed is 56\nYou earned 2 frequent renter points";
 
@@ -65,9 +65,9 @@ namespace Refactoring_Practice.Tests
 
 			GivenCustomer();
 
-			RentAMovie(Movie.REGULAR, 20);
+			RentAMovie(Movie.Regular, 20);
 
-			RentAMovie(Movie.NEW_RELEASE, 20);
+			RentAMovie(Movie.NewRelease, 20);
 
 			var expected = "Rental Record for Jay\n\tHappy Friday\t29\n\tHappy Friday\t60\nAmount owed is 89\nYou earned 3 frequent renter points";
 
@@ -81,9 +81,9 @@ namespace Refactoring_Practice.Tests
 			
 			GivenCustomer();
 
-			RentAMovie(Movie.CHILDRENS, 20);
-			RentAMovie(Movie.REGULAR, 20);
-			RentAMovie(Movie.NEW_RELEASE, 20);
+			RentAMovie(Movie.Children, 20);
+			RentAMovie(Movie.Regular, 20);
+			RentAMovie(Movie.NewRelease, 20);
 			var expected = "Rental Record for Jay\n\tHappy Friday\t27\n\tHappy Friday\t29\n\tHappy Friday\t60\nAmount owed is 116\nYou earned 4 frequent renter points";
 
 			Assert.AreEqual(expected, _customer.GetStatement());
@@ -91,7 +91,7 @@ namespace Refactoring_Practice.Tests
 		}
 		private void RentAMovie(int movieTypeCode, int daysRented)
 		{
-			_customer.addRental(new Rental(new Movie("Happy Friday", movieTypeCode), daysRented));
+			_customer.AddRental(new Rental(new Movie("Happy Friday", movieTypeCode), daysRented));
 		}
 
 		private void GivenCustomer()
